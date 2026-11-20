@@ -1,0 +1,15 @@
+# Hugo
+public/
+resources/_gen/
+.hugo_build.lock
+
+# Vale: fetched by `make vale-sync`, not committed
+.vale/styles/*
+!.vale/styles/config/
+.vale/styles/config/*
+!.vale/styles/config/vocabularies/
+.vale/.toolkit/
+
+# Misc
+node_modules/
+.DS_Store

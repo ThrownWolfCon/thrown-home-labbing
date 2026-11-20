@@ -1,0 +1,23 @@
+{{- /*
+Shows a lab's area, time, and difficulty from its front matter.
+
+Front matter used:
+  params.area        e.g. "Linux & systemd"
+  params.time        e.g. "about 20 minutes"
+  params.difficulty  Beginner | Intermediate | Advanced
+
+@example {{< lab-meta >}}
+*/ -}}
+{{- $p := .Page.Params -}}
+{{- $colors := dict "Beginner" "green" "Intermediate" "amber" "Advanced" "red" -}}
+<div class="lab-meta hx:not-prose hx:mt-4 hx:mb-6 hx:flex hx:flex-wrap hx:gap-2 hx:text-sm">
+  {{- with $p.area }}
+  {{- partial "shortcodes/badge.html" (dict "content" . "color" "blue" "icon" "tag") -}}
+  {{- end }}
+  {{- with $p.time }}
+  {{- partial "shortcodes/badge.html" (dict "content" . "color" "gray" "icon" "clock") -}}
+  {{- end }}
+  {{- with $p.difficulty }}
+  {{- partial "shortcodes/badge.html" (dict "content" . "color" (index $colors . | default "gray") "icon" "academic-cap") -}}
+  {{- end }}
+</div>

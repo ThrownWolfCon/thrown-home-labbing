@@ -1,0 +1,69 @@
+baseURL = "https://thrownwolfcon.github.io/thrown-home-labbing/"
+locale = "en-us"
+title = "Thrown Home Labbing"
+enableGitInfo = true
+enableRobotsTXT = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/imfing/hextra"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true          # allow inline HTML such as <kbd> in Markdown
+  [markup.highlight]
+    noClasses = false
+
+[menu]
+  [[menu.main]]
+    name = "Labs"
+    pageRef = "/docs/labs"
+    weight = 10
+  [[menu.main]]
+    name = "Getting started"
+    pageRef = "/docs/getting-started"
+    weight = 20
+  [[menu.main]]
+    name = "Skills map"
+    pageRef = "/docs/skills-map"
+    weight = 30
+  [[menu.main]]
+    name = "Search"
+    weight = 40
+    [menu.main.params]
+      type = "search"
+  [[menu.main]]
+    name = "GitHub"
+    weight = 50
+    url = "https://github.com/ThrownWolfCon/thrown-home-labbing"
+    [menu.main.params]
+      icon = "github"
+
+[params]
+  description = "Hands-on homelab projects to keep your Linux, networking, container, and observability skills sharp."
+  displayUpdatedDate = true
+  dateFormat = "January 2, 2006"
+
+  [params.navbar]
+    displayTitle = true
+    displayLogo = false
+
+  [params.page]
+    width = "wide"
+
+  [params.footer]
+    displayCopyright = false
+    displayPoweredBy = true
+
+  [params.editURL]
+    enable = true
+    base = "https://github.com/ThrownWolfCon/thrown-home-labbing/edit/main/content"
+
+  [params.search]
+    enable = true
+    type = "flexsearch"
+    [params.search.flexsearch]
+      index = "content"
+
+[taxonomies]
+  tag = "tags"

@@ -1,0 +1,46 @@
+{{- /*
+Builds a table of labs from their front matter, so the index never goes stale.
+
+A lab is any page whose front matter sets params.topic: tutorial.
+
+On the top-level labs page: lists every lab, grouped by area, with an Area column.
+On an area page (section="true"): lists only that area's labs, with descriptions.
+
+@param {string} section  Set to "true" on an area page.
+
+@example {{< lab-index >}}
+@example {{< lab-index section="true" >}}
+*/ -}}
+{{- $inSection := eq (.Get "section") "true" -}}
+
+{{- if $inSection -}}
+<table>
+  <thead><tr><th>Lab</th><th>Time</th><th>Difficulty</th></tr></thead>
+  <tbody>
+  {{- range (where .Page.RegularPages "Params.topic" "tutorial").ByWeight }}
+    <tr>
+      <td><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><small>{{ .Description }}</small></td>
+      <td>{{ .Params.time | replaceRE "^about " "" }}</td>
+      <td>{{ .Params.difficulty }}</td>
+    </tr>
+  {{- end }}
+  </tbody>
+</table>
+
+{{- else -}}
+<table>
+  <thead><tr><th>Lab</th><th>Area</th><th>Time</th><th>Difficulty</th></tr></thead>
+  <tbody>
+  {{- range $area := .Page.Sections.ByWeight }}
+    {{- range (where $area.RegularPages "Params.topic" "tutorial").ByWeight }}
+    <tr>
+      <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+      <td><a href="{{ $area.RelPermalink }}">{{ $area.Title }}</a></td>
+      <td>{{ .Params.time | replaceRE "^about " "" }}</td>
+      <td>{{ .Params.difficulty }}</td>
+    </tr>
+    {{- end }}
+  {{- end }}
+  </tbody>
+</table>
+{{- end -}}
