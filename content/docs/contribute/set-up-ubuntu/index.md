@@ -9,7 +9,7 @@ params:
 
 This page takes you from nothing installed to the site running in your browser. Do the steps in order. Each step tells you what to type and what you should see.
 
-To learn more about any tool, or to remove or update it later, refer to [Docs-as-code tools]({{< ref "/docs/tools" >}}).
+Want to know what each tool does first? Open {{< modal page="/docs/tools" text="the tools at a glance" />}}. To remove or update a tool later, refer to [Docs-as-code tools]({{< ref "/docs/tools" >}}).
 
 **Time:** about 20 minutes, once. After that, you only need [Step 8](#step-8-see-the-site).
 

@@ -92,3 +92,41 @@ Test the new login in a separate terminal before you close your session.
 ```
 
 Types: `default` (tip), `info` (note), `warning`, and `error` (danger).
+
+## Popup dialog boxes
+
+The `modal` shortcode opens content in a popup dialog box without leaving the page, like TiddlyWiki's `tm-modal`. Readers close it with the ✕ button, the **Close** button, the **Esc** key, or by clicking outside it.
+
+To show another page in the popup:
+
+```markdown
+Before you start, read {{</* modal page="/docs/tools/hugo" text="Hugo basics" /*/>}}.
+```
+
+To show your own short content:
+
+```markdown
+New to systemd? {{</* modal text="What's systemd?" title="systemd in 30 seconds" */>}}
+**systemd** is the program that starts first when Linux boots...
+{{</* /modal */>}}
+```
+
+| Parameter | What it does |
+| --- | --- |
+| `page` | The page to show, such as `/docs/tools/hugo`. Leave it out to use your own content instead. |
+| `text` | The link text readers click. Defaults to the page title. |
+| `title` | The heading at the top of the popup. Defaults to the page title, or to `text`. |
+
+{{< callout type="info" >}}
+**Use popups sparingly**
+
+Content in a popup doesn't print, can't be linked to directly, and readers can miss it. For most "more information" content, use the theme's `details` shortcode instead, which expands in place:
+
+```markdown
+{{</* details title="What is a page bundle?" closed="true" */>}}
+A folder with an `index.md` inside.
+{{</* /details */>}}
+```
+
+Save popups for short definitions or a quick look at another page.
+{{< /callout >}}

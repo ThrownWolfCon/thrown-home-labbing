@@ -21,6 +21,16 @@ Read a failing service's state, exit code, and logs, and tell the difference bet
 
 - A systemd-based Linux machine with `sudo`
 
+New to systemd? {{< modal text="What's systemd?" title="systemd in 30 seconds" >}}
+**systemd** is the program that starts first when Linux boots, and then starts and supervises everything else.
+
+- A **unit** is anything systemd manages. A **service** unit, such as `ssh.service`, runs a program.
+- `systemctl` is the command you use to start, stop, and check units.
+- `journalctl` reads the logs that systemd collects from every service.
+
+Most modern distributions use it, including Ubuntu, Fedora, Debian, and RHEL.
+{{< /modal >}}
+
 ## Setup
 
 Create a service that points at a binary that doesn't exist:

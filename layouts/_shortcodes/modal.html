@@ -1,0 +1,103 @@
+{{- /*
+Opens content in a popup (modal dialog), like TiddlyWiki's tm-modal.
+
+Two ways to use it:
+
+1. Show another page in the popup:
+     {{< modal page="/docs/tools/hugo" text="Hugo basics" />}}
+
+2. Show your own short content in the popup:
+     {{< modal text="What's a page bundle?" title="Page bundles" >}}
+     A folder with an `index.md` inside. Images for that page can sit next to it.
+     {{< /modal >}}
+
+@param {string} page   Path of a page to show, for example "/docs/tools/hugo". Optional if you write content between the tags.
+@param {string} text   The link text readers click. Defaults to the page's title.
+@param {string} title  The popup's heading. Defaults to the page's title, or to text.
+
+Close it with the ✕ button, the Close button, the Esc key, or by clicking outside it.
+Styles are in assets/css/custom.css.
+*/ -}}
+{{- $path := .Get "page" -}}
+{{- $target := "" -}}
+{{- if $path -}}
+  {{- $target = site.GetPage $path -}}
+  {{- if not $target -}}
+    {{- errorf "modal: no page found at %q. %s" $path .Position -}}
+  {{- end -}}
+  {{- if eq $target.RelPermalink .Page.RelPermalink -}}
+    {{- errorf "modal: a page can't open itself in a modal. %s" .Position -}}
+  {{- end -}}
+{{- else if not .Inner -}}
+  {{- errorf "modal: set page=\"...\" or put content between {{< modal >}} and {{< /modal >}}. %s" .Position -}}
+{{- end -}}
+
+{{- $text := .Get "text" -}}
+{{- $title := .Get "title" -}}
+{{- with $target -}}
+  {{- $text = $text | default .LinkTitle -}}
+  {{- $title = $title | default .Title -}}
+{{- end -}}
+{{- $text = $text | default "More" -}}
+{{- $title = $title | default $text -}}
+{{- $id := printf "modal-%s-%d" (anchorize $title) .Ordinal -}}
+
+<button type="button" class="thl-modal-trigger" data-thl-modal="{{ $id }}" aria-haspopup="dialog">{{ $text }}</button>
+{{- /* The dialog lives in a <template> so it's valid inside a paragraph. The script below moves it to the end of the page when opened. */}}
+<template id="{{ $id }}">
+  <dialog class="thl-modal" aria-labelledby="{{ $id }}-title">
+    <div class="thl-modal-box">
+      <header class="thl-modal-header">
+        <h2 id="{{ $id }}-title" class="not-prose">{{ $title }}</h2>
+        <button type="button" class="thl-modal-x" data-thl-modal-close aria-label="Close">✕</button>
+      </header>
+      <div class="thl-modal-body content">
+        {{- if .Inner }}
+          {{ .Inner | .Page.RenderString (dict "display" "block") }}
+        {{- else }}
+          {{ $target.Content }}
+        {{- end }}
+      </div>
+      <footer class="thl-modal-footer">
+        {{- with $target }}
+        <a href="{{ .RelPermalink }}">Open as a full page</a>
+        {{- end }}
+        <button type="button" class="thl-modal-close" data-thl-modal-close>Close</button>
+      </footer>
+    </div>
+  </dialog>
+</template>
+
+{{- /* Add the script once per page, no matter how many modals it has. */}}
+{{- if not (.Page.Store.Get "thlModalScript") }}
+{{- .Page.Store.Set "thlModalScript" true }}
+<script>
+(function () {
+  if (window.thlModalReady) return;
+  window.thlModalReady = true;
+  document.addEventListener("click", function (event) {
+    var trigger = event.target.closest("[data-thl-modal]");
+    if (!trigger) return;
+    var id = trigger.getAttribute("data-thl-modal");
+    var dialog = document.getElementById(id + "-dialog");
+    if (!dialog) {
+      var template = document.getElementById(id);
+      if (!template) return;
+      dialog = template.content.querySelector("dialog").cloneNode(true);
+      dialog.id = id + "-dialog";
+      document.body.appendChild(dialog);
+      dialog.addEventListener("click", function (e) {
+        // Close on the buttons, or on a click outside the box (the dimmed backdrop).
+        if (e.target === dialog || e.target.closest("[data-thl-modal-close]")) dialog.close();
+      });
+      dialog.addEventListener("close", function () {
+        document.documentElement.classList.remove("thl-modal-open");
+        trigger.focus();
+      });
+    }
+    document.documentElement.classList.add("thl-modal-open");
+    dialog.showModal();
+  });
+})();
+</script>
+{{- end -}}
