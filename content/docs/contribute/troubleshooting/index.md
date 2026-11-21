@@ -21,7 +21,7 @@ Error output can be long. The useful part is usually the last line or two.
 
 **What it means:** Hugo isn't installed, or your terminal can't find it. Error 127 always means "command not found."
 
-**Fix:** install Hugo. Follow [Step 3 of the setup]({{< ref "/docs/contribute/set-up-ubuntu#step-3-install-hugo" >}}), then check with `hugo version`.
+**Fix:** install Hugo. Follow [Install on the Hugo page]({{< ref "/docs/tools/hugo#install" >}}), then check with `hugo version`. The same error for `vale` or `npx` means that tool is missing: refer to [Vale]({{< ref "/docs/tools/vale#install" >}}) or [markdownlint and Node.js]({{< ref "/docs/tools/markdownlint#install" >}}).
 
 ### `module "github.com/imfing/hextra" not found` or an error that mentions `go`
 
@@ -34,7 +34,7 @@ sudo apt install -y golang-go
 go version
 ```
 
-Then run `make serve` again.
+Then run `make serve` again. For more, refer to [Go]({{< ref "/docs/tools/go" >}}).
 
 ### `make: *** No rule to make target 'serve'` or `No targets specified and no makefile found`
 
@@ -54,6 +54,12 @@ If `ls` says `No such file or directory`, the `Makefile` is missing from your co
 **What it means:** the Hugo server isn't running, or the address is wrong.
 
 **Fix:** check that the terminal running `make serve` is still open and says `Press Ctrl+C to stop`. Use the full address, including `/thrown-home-labbing/` at the end: <http://localhost:1313/thrown-home-labbing/>.
+
+### The Node.js version is too old for markdownlint
+
+**What it means:** markdownlint needs Node.js 22 or later, and yours is older.
+
+**Fix:** check with `node --version`, then follow [Install a newer Node.js]({{< ref "/docs/tools/markdownlint#install-a-newer-nodejs" >}}).
 
 ## Work with Git
 

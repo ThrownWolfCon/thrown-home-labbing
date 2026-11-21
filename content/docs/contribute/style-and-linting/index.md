@@ -19,8 +19,8 @@ This site follows the [Grafana Labs Writers' Toolkit](https://grafana.com/docs/w
 
 | Linter | Checks | Configuration |
 | --- | --- | --- |
-| Vale | Word choice, tone, spelling, and headings, using the Grafana style | `.vale.ini` and `.vale/` |
-| markdownlint-cli2 | Markdown structure, such as heading levels and list formatting | `.markdownlint-cli2.yaml` |
+| [Vale]({{< ref "/docs/tools/vale" >}}) | Word choice, tone, spelling, and headings, using the Grafana style | `.vale.ini` and `.vale/` |
+| [markdownlint-cli2]({{< ref "/docs/tools/markdownlint" >}}) | Markdown structure, such as heading levels and list formatting | `.markdownlint-cli2.yaml` |
 
 Run both locally:
 

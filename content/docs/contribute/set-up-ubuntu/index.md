@@ -9,6 +9,8 @@ params:
 
 This page takes you from nothing installed to the site running in your browser. Do the steps in order. Each step tells you what to type and what you should see.
 
+To learn more about any tool, or to remove or update it later, refer to [Docs-as-code tools]({{< ref "/docs/tools" >}}).
+
 **Time:** about 20 minutes, once. After that, you only need [Step 8](#step-8-see-the-site).
 
 {{< callout type="info" >}}
@@ -35,9 +37,9 @@ sudo apt update
 
 ## Step 2: Install Git, Make, and Go
 
-- **Git** downloads the project and tracks your changes.
-- **Make** runs the shortcuts in the project's `Makefile`, such as `make serve`.
-- **Go** lets Hugo download the site's theme.
+- [Git]({{< ref "/docs/tools/git" >}}) downloads the project and tracks your changes.
+- [Make]({{< ref "/docs/tools/make" >}}) runs the shortcuts in the project's `Makefile`, such as `make serve`.
+- [Go]({{< ref "/docs/tools/go" >}}) lets Hugo download the site's theme.
 
 ```bash
 sudo apt install -y git make golang-go
@@ -55,7 +57,7 @@ go version
 
 ## Step 3: Install Hugo
 
-Hugo turns the Markdown files into the website. Install the same version the website build uses.
+[Hugo]({{< ref "/docs/tools/hugo" >}}) turns the Markdown files into the website. Install the same version the website build uses.
 
 {{< callout type="warning" >}}
 **Don't use `sudo apt install hugo`**
@@ -71,11 +73,11 @@ cd ~
 hugo version
 ```
 
-**You should see:** a line that starts with `hugo v0.170.1` and includes the word `extended`.
+**You should see:** a line that starts with `hugo v0.170.1`. It doesn't say `extended`, even though this is the extended edition. That's normal.
 
 ## Step 4: Install Vale
 
-Vale checks your writing against the Grafana Labs style guide.
+[Vale]({{< ref "/docs/tools/vale" >}}) checks your writing against the Grafana Labs style guide.
 
 ```bash
 cd /tmp
@@ -90,14 +92,14 @@ vale --version
 
 ## Step 5: Install Node.js
 
-markdownlint, the tool that checks Markdown formatting, runs on Node.js.
+[markdownlint]({{< ref "/docs/tools/markdownlint" >}}), the tool that checks Markdown formatting, runs on Node.js.
 
 ```bash
 sudo apt install -y nodejs npm
 node --version
 ```
 
-**You should see:** a version line such as `v20.19.2`.
+**You should see:** `v22` or later, such as `v22.14.0`. If it's `v20` or lower, markdownlint won't run. Follow [Install a newer Node.js]({{< ref "/docs/tools/markdownlint#install-a-newer-nodejs" >}}).
 
 ## Step 6: Tell Git who you are
 
@@ -173,7 +175,8 @@ The file counts can differ. What matters is **0 errors** and **0 issues**.
 
 ## Checklist
 
-- [ ] `hugo version` shows `v0.170.1` and `extended`
+- [ ] `hugo version` shows `v0.170.1` or later
+- [ ] `node --version` shows `v22` or later
 - [ ] `vale --version` shows `3.28.1`
 - [ ] `make serve` shows the site at <http://localhost:1313/thrown-home-labbing/>
 - [ ] `make lint` shows 0 errors and 0 issues

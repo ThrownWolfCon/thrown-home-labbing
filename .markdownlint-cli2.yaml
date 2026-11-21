@@ -2,6 +2,8 @@
 config:
   default: true
   MD013: false          # line length: prose is written one paragraph per line
+  MD010:
+    ignore_code_languages: [makefile]  # Makefile examples need real Tab characters
   MD024:
     siblings_only: true # allow repeated headings in different sections
   MD025:

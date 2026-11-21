@@ -27,8 +27,10 @@ This site is docs-as-code: Markdown in Git, changes through pull requests, and a
 
 | Piece | Tool |
 | --- | --- |
-| Static site generator | [Hugo](https://gohugo.io/), with the [Hextra](https://imfing.github.io/hextra/) theme as a Hugo module |
+| Static site generator | [Hugo]({{< ref "/docs/tools/hugo" >}}), with the [Hextra](https://imfing.github.io/hextra/) theme as a Hugo module |
 | Content | Markdown page bundles under `content/docs/` |
-| Prose linting | [Vale](https://vale.sh/) with the Grafana Labs Writers' Toolkit style |
-| Markdown linting | [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) |
-| Hosting | GitHub Pages, deployed by GitHub Actions |
+| Prose linting | [Vale]({{< ref "/docs/tools/vale" >}}) with the Grafana Labs Writers' Toolkit style |
+| Markdown linting | [markdownlint-cli2]({{< ref "/docs/tools/markdownlint" >}}) |
+| Hosting | GitHub Pages, deployed by [GitHub Actions]({{< ref "/docs/tools/github-actions" >}}) |
+
+For every tool, including how to check, install, update, and remove it, refer to [Docs-as-code tools]({{< ref "/docs/tools" >}}).

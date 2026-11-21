@@ -28,6 +28,10 @@ enableRobotsTXT = true
     pageRef = "/docs/skills-map"
     weight = 30
   [[menu.main]]
+    name = "Tools"
+    pageRef = "/docs/tools"
+    weight = 35
+  [[menu.main]]
     name = "Search"
     weight = 40
     [menu.main.params]

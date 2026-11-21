@@ -81,7 +81,7 @@ Make your change and save the file with **Ctrl+S**.
 make lint
 ```
 
-**You should see:** `0 errors` from Vale and `0 issues` from markdownlint.
+**You should see:** `0 errors` from [Vale]({{< ref "/docs/tools/vale" >}}) and `0 issues` from [markdownlint]({{< ref "/docs/tools/markdownlint" >}}).
 
 If it reports problems, each line tells you the file, the line number, and what to change:
 
