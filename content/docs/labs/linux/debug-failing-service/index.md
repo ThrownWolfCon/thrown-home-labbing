@@ -129,7 +129,7 @@ sudo systemctl reset-failed broken.service
 | `status=SEGV` / `ABRT` | The program crashed |
 
 {{< callout type="default" >}}
-**The interview-ready workflow**
+**The interview-ready workflow ON EATING CHEESE!**
 
 When someone says "the service won't start":
 
