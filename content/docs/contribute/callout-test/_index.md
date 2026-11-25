@@ -23,6 +23,12 @@ weight: 99
 
 {{< callout type="important" >}}
   **Important:** you must restart the service after this step.
+
+  ```
+    {{< callout type="important" >}}
+  **Important:** you must restart the service after this step.
+  {{< /callout >}}
+  ```
 {{< /callout >}}
 
 ## Custom icon and emoji
